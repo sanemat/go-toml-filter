@@ -16,6 +16,10 @@ func main() {
 		log.Fatalf("Error loading TOML: %s", err)
 	}
 
+	if !tree.Has(tableName) {
+		log.Fatalf("Error tableName does not exist: %s", tableName)
+	}
+
 	tableConfig := tree.Get(tableName).(*toml.Tree)
 	tmp := tableConfig.String()
 	fmt.Println(tmp)
