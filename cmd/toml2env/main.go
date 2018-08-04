@@ -25,6 +25,10 @@ func main() {
 	for _, element := range tableConfig.Keys() {
 		m[element] = tableConfig.Get(element)
 	}
-	tmp := m
+	tmp := convert(m)
 	fmt.Println(tmp)
+}
+
+func convert(m map[string]interface{}) string {
+	return fmt.Sprint(m)
 }
