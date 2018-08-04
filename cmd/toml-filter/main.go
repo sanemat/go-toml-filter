@@ -9,12 +9,14 @@ import (
 )
 
 func main() {
-	fmt.Println(os.Args[1])
+	tableName := os.Args[1]
 
 	tree, err := toml.LoadReader(os.Stdin)
 	if err != nil {
 		log.Fatalf("Error loading TOML: %s", err)
 	}
-	tmp := tree.String()
+
+	tableConfig := tree.Get(tableName).(*toml.Tree)
+	tmp := tableConfig.String()
 	fmt.Println(tmp)
 }
