@@ -21,6 +21,10 @@ func main() {
 	}
 
 	tableConfig := tree.Get(tableName).(*toml.Tree)
-	tmp := tableConfig.String()
+	m := make(map[string]interface{})
+	for _, element := range tableConfig.Keys() {
+		m[element] = tableConfig.Get(element)
+	}
+	tmp := m
 	fmt.Println(tmp)
 }
