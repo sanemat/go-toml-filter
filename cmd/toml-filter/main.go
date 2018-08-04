@@ -5,15 +5,16 @@ import (
 	"log"
 	"os"
 
-	"github.com/BurntSushi/toml"
+	"github.com/pelletier/go-toml"
 )
 
 func main() {
 	fmt.Println(os.Args[1])
 
-	var tmp interface{}
-	if _, err := toml.DecodeReader(os.Stdin, &tmp); err != nil {
-		log.Fatalf("Error decoding TOML: %s", err)
+	tree, err := toml.LoadReader(os.Stdin)
+	if err != nil {
+		log.Fatalf("Error loading TOML: %s", err)
 	}
-	fmt.Println("hello world")
+	tmp := tree.String()
+	fmt.Println(tmp)
 }
