@@ -21,14 +21,6 @@ func main() {
 	}
 
 	tableConfig := tree.Get(tableName).(*toml.Tree)
-	m := make(map[string]interface{})
-	for _, element := range tableConfig.Keys() {
-		m[element] = tableConfig.Get(element)
-	}
-	tmp := convert(m)
+	tmp := tableConfig.ToMap()
 	fmt.Println(tmp)
-}
-
-func convert(m map[string]interface{}) string {
-	return fmt.Sprint(m)
 }
