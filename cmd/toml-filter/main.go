@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	fmt.Println(os.Args[1])
+
 	var tmp interface{}
 	if _, err := toml.DecodeReader(os.Stdin, &tmp); err != nil {
 		log.Fatalf("Error decoding TOML: %s", err)
