@@ -29,7 +29,7 @@ func main() {
 		if b.Len() != 0 {
 			b.WriteString("\n")
 		}
-		fmt.Fprintf(&b, "%v=%v", key, value)
+		fmt.Fprintf(&b, "export %v=%v", key, value)
 	}
 	fmt.Println(b.String())
 }
