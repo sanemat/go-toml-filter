@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 
+	"strings"
+
 	"github.com/pelletier/go-toml"
 )
 
@@ -22,5 +24,12 @@ func main() {
 
 	tableConfig := tree.Get(tableName).(*toml.Tree)
 	tmp := tableConfig.ToMap()
-	fmt.Println(tmp)
+	var b strings.Builder
+	for key, value := range tmp {
+		if b.Len() != 0 {
+			b.WriteString("\n")
+		}
+		fmt.Fprintf(&b, "%v=%v", key, value)
+	}
+	fmt.Println(b.String())
 }
